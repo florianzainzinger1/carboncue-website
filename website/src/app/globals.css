@@ -1,0 +1,288 @@
+@import "tailwindcss";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+
+/* Tailwind CSS v4 theme tokens. Enterprise Minimalist / Linear-Stripe Aesthetic */
+@theme {
+  /* Typography */
+  --font-sans:
+    "IBM Plex Sans Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", Consolas, monospace;
+
+  --text-display: clamp(2.5rem, 6vw, 4.5rem);
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.04em;
+
+  --text-title: clamp(1.875rem, 4vw, 2.75rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.03em;
+
+  --text-section: clamp(1.5rem, 2.5vw, 2rem);
+  --text-section--line-height: 1.2;
+  --text-section--letter-spacing: -0.02em;
+
+  --text-subsection: 1.125rem;
+  --text-subsection--line-height: 1.35;
+  --text-subsection--letter-spacing: -0.01em;
+
+  /* Strict Monochrome & High-Precision Carbon Slate Palette */
+  --color-canvas: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f4f4f5;
+  --color-surface-elevated: #fcfcfc;
+  --color-surface-dark: #09090b;
+  --color-surface-dark-card: #121215;
+
+  --color-ink: #09090b;
+  --color-ink-soft: #52525b;
+  /* #71717a measured 4.40:1 on --color-surface-muted, just under the WCAG
+     AA floor for normal text. #6b6b73 clears every surface in use
+     (min 4.81:1) while staying visually close. */
+  --color-muted: #6b6b73;
+
+  --color-border: #e4e4e7;
+  --color-border-subtle: #f0f0f2;
+  --color-border-strong: #a1a1aa;
+  --color-border-dark: #27272a;
+
+  --color-primary: #09090b;
+  --color-primary-hover: #27272a;
+  --color-primary-soft: #f4f4f5;
+
+  --color-accent-risk: #dc2626;
+  --color-accent-risk-soft: #fef2f2;
+  --color-accent-risk-border: #fecaca;
+
+  /* The surplus/asset direction. Petrol, deliberately distinct from the
+     "covered" green and the risk red. #155e75 measures 7.0:1 on white and
+     6.3:1 on --color-surface-muted; #0e7490 (graphics and large text)
+     measures 5.0:1 on white. */
+  --color-asset: #0e7490;
+  --color-asset-soft: #ecfeff;
+  --color-asset-ink: #155e75;
+
+  /* `accent` is the token family the Callout and DemoBadge actually reference.
+     Without it those utilities resolved to nothing, so the DEMO pill rendered
+     unstyled and the caution Callout had no background. #b45309 on #fffbeb
+     measures 5.34:1, above the WCAG AA floor for normal text. */
+  --color-accent: #d97706;
+  --color-accent-soft: #fffbeb;
+  --color-accent-ink: #b45309;
+
+  --color-focus: #09090b;
+
+  /* Layout and spacing */
+  --container-site: 74rem;
+  --container-reading: 42rem;
+  --spacing-page: clamp(1.25rem, 4vw, 2.5rem);
+  --spacing-section: clamp(4rem, 8vw, 6.5rem);
+  --spacing-panel: clamp(1.25rem, 2.5vw, 1.75rem);
+  --spacing-cluster: clamp(0.75rem, 1.5vw, 1.25rem);
+
+  /* Shape */
+  --radius-control: 0.375rem;
+  --radius-card: 0.75rem;
+  --radius-pill: 9999px;
+
+  /* Motion */
+  --ease-calm: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-subtle: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-panel:
+    0 1px 3px 0 rgb(0 0 0 / 0.04), 0 12px 32px -4px rgb(0 0 0 / 0.06);
+  --shadow-card-hover:
+    0 4px 16px -2px rgb(0 0 0 / 0.08), 0 20px 48px -4px rgb(0 0 0 / 0.07);
+  --shadow-dark-panel:
+    0 0 0 1px rgb(255 255 255 / 0.08), 0 24px 64px -12px rgb(0 0 0 / 0.85);
+
+  /* Animations */
+  --animate-fade-in-up: fade-in-up 0.5s var(--ease-calm) both;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:root {
+  --motion-duration-fast: 120ms;
+  --motion-duration-base: 200ms;
+  --motion-distance-short: 0.125rem;
+}
+
+html {
+  min-width: 20rem;
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+  color-scheme: light;
+  background: var(--color-canvas);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  /* A column flex box with a growing <main> keeps the footer anchored to the
+     bottom of the viewport on short pages instead of floating mid-screen. */
+  display: flex;
+  flex-direction: column;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body > main {
+  flex: 1 0 auto;
+}
+
+::selection {
+  background: #09090b;
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+/* Range sliders for the risk calculator. The calculator used to be a dark
+   terminal panel; it now sits on the same light surface as the rest of the
+   page, so the track and thumb follow the light tokens too. */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-ink);
+  border: 3px solid var(--color-surface);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.28);
+  cursor: pointer;
+  transition:
+    transform 0.15s var(--ease-calm),
+    box-shadow 0.15s var(--ease-calm);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.32);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-ink);
+  border: 3px solid var(--color-surface);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.28);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    /* Delays would otherwise survive the zeroed durations and make states
+       lag behind the content by up to a second, including the inline
+       stagger and zoom delays of the compliance-year figure. */
+    transition-delay: 0ms !important;
+  }
+}
+
+/* ─── Compliance-year scroll story ────────────────────────────────────────
+   Layer reveals for the evolving graph and the step dimming. Kept in CSS so
+   the story needs no animation dependency. The global prefers-reduced-motion
+   rule below already collapses these durations to near-zero.               */
+.story-fade {
+  transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.story-wipe {
+  transition: width 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.story-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Block geometry is scrubbed by scroll and applied inline. Only the colour
+   sweep that turns red back to green at the last step transitions, with a
+   per-block delay carried inline. */
+.story-block {
+  transition:
+    fill 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    fill-opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.story-step {
+  border-left: 2px solid transparent;
+  padding-left: 1.25rem;
+  transition: border-color 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The active step is marked with a rule rather than by dimming the others.
+   Dimming looked good but pushed the inactive text below the WCAG AA contrast
+   floor, which axe correctly flagged. Contrast is never reduced here. */
+[data-enhanced="true"] .story-step {
+  border-left-color: var(--color-border);
+}
+
+[data-enhanced="true"] .story-step[data-active="true"] {
+  border-left-color: var(--color-ink);
+}
+
+/* Steps the reader has scrolled past fade out upwards so read text clears the
+   way instead of stacking above the active step. Large screens only — the
+   figure does not stick below lg — and never under reduced motion, where the
+   full list stays readable. */
+@media (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
+  [data-enhanced="true"] .story-step {
+    transition:
+      border-color 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-enhanced="true"] .story-step[data-passed="true"] {
+    opacity: 0;
+    transform: translateY(-1.25rem);
+  }
+}

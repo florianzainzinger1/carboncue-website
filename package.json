@@ -1,0 +1,22 @@
+{
+  "name": "carboncue",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": "24.19.0",
+    "pnpm": "9.15.0"
+  },
+  "scripts": {
+    "format:check": "prettier --check .",
+    "lint": "pnpm --filter @carboncue/website lint",
+    "typecheck": "pnpm --filter @carboncue/website typecheck",
+    "test": "pnpm --filter @carboncue/website test",
+    "test:e2e": "pnpm --filter @carboncue/website test:e2e",
+    "build": "pnpm --filter @carboncue/website build"
+  },
+  "devDependencies": {
+    "prettier": "3.9.6",
+    "prettier-plugin-tailwindcss": "0.8.1"
+  }
+}
