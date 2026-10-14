@@ -1,0 +1,10 @@
+**/*.md
+.pnpm-store/
+node_modules/
+pnpm-lock.yaml
+website/.next/
+website/.playwright-browsers/
+website/coverage/
+website/playwright-report/
+website/test-results/
+
