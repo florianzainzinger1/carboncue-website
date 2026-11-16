@@ -419,7 +419,7 @@ describe("contact founders section", () => {
       expect(markup).toContain(productRole);
       expect(markup).toContain(linkText);
       expect(markup).toContain(
-        'href="https://www.linkedin.com/in/florian-zainzinger-63650a259/" rel="noopener"',
+        'href="https://www.linkedin.com/in/florian-zainzinger/" rel="noopener"',
       );
       expect(markup).not.toContain("nofollow");
       // The founders section follows the form and the confidentiality note.

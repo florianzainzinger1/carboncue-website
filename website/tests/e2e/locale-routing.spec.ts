@@ -208,7 +208,7 @@ test("emits complete locale-aware metadata on every page", async ({ page }) => {
         {
           "@type": "Person",
           name: "Florian Zainzinger",
-          sameAs: ["https://www.linkedin.com/in/florian-zainzinger-63650a259/"],
+          sameAs: ["https://www.linkedin.com/in/florian-zainzinger/"],
         },
       ]);
       expect(structuredDataText).not.toContain("Organization");

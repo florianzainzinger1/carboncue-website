@@ -15,7 +15,7 @@ export const FOUNDER_PROFILES = [
   {
     name: "Florian Zainzinger",
     role: "productAndTechnology",
-    linkedInUrl: "https://www.linkedin.com/in/florian-zainzinger-63650a259/",
+    linkedInUrl: "https://www.linkedin.com/in/florian-zainzinger/",
   },
 ] as const satisfies readonly FounderProfile[];
 

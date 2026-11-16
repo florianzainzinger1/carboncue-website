@@ -146,7 +146,7 @@ test("renders each guide with its Stand line, sources, Article JSON-LD and cross
       {
         "@type": "Person",
         name: "Florian Zainzinger",
-        sameAs: ["https://www.linkedin.com/in/florian-zainzinger-63650a259/"],
+        sameAs: ["https://www.linkedin.com/in/florian-zainzinger/"],
       },
     ]);
     expect(article?.publisher).toEqual(article?.author);
@@ -294,7 +294,7 @@ test("shows the founders section with a LinkedIn link on the contact page in bot
       }),
     ).toHaveAttribute(
       "href",
-      "https://www.linkedin.com/in/florian-zainzinger-63650a259/",
+      "https://www.linkedin.com/in/florian-zainzinger/",
     );
     await expect(section.locator('a[rel="noopener"]')).toHaveCount(1);
   }

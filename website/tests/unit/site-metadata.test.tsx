@@ -272,7 +272,7 @@ describe("truthful website structured data", () => {
       {
         "@type": "Person",
         name: "Florian Zainzinger",
-        sameAs: ["https://www.linkedin.com/in/florian-zainzinger-63650a259/"],
+        sameAs: ["https://www.linkedin.com/in/florian-zainzinger/"],
       },
     ]);
     expect(serialized).not.toContain("Organization");
